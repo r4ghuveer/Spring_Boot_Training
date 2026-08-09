@@ -1,1 +1,1 @@
-find -name "*.java" -o -name "pom.xml" -o -name "*.properties" | entr mvn clean install
+find -name "*.java" -o -name "pom.xml" -o -name "*.properties" | entr mvn package
