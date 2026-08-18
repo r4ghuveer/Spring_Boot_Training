@@ -1,1 +1,1 @@
-find -name "*.java" -o -name "pom.xml" -o -name "*.properties" | entr mvn package
+find -name "*.java" -o -name "pom.xml" -o -name "*.properties" | entr mvn compile

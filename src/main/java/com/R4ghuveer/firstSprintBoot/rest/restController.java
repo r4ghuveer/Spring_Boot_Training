@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 // properties injection using Value annotation
 import org.springframework.beans.factory.annotation.Value;
 
+// Qualifiers is used to specify the class which we want injected whenever there is ambiguity in 
+// interfaces implementation
+import org.springframework.beans.factory.annotation.Qualifier;
+
 
 @RestController
 public class restController {
@@ -19,10 +23,21 @@ public class restController {
 
     //this is constructor dependency injection
     // we inject the coach object and use its methods in our rest enpoints
+    // @Autowired
+    // public restController(Coach coachObj){
+    //    this.coachObj = coachObj; 
+    // }
+
+    //getter setter dependency injection
     @Autowired
-    public restController(Coach coachObj){
-       this.coachObj = coachObj; 
+    public void setCoachObj(@Qualifier("cricketCoach")Coach coachObj){
+        this.coachObj = coachObj;
     }
+    // Without Qualifier if there is only one interface implementation
+    // @Autowired
+    // public void setCoachObj(Coach coachObj){
+    //     this.coachObj = coachObj;
+    // }
 
     // injecting application properties using value annotation    
     @Value("${test.name}")
