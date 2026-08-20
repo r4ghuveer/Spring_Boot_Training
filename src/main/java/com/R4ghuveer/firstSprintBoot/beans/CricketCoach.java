@@ -5,11 +5,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class CricketCoach implements Coach {
 
+    private int A = 0;
+
     public CricketCoach(){
         System.out.println("initialized : "+getClass().getName());
     }
     @Override
     public String getCoachWorkout(){
         return "This is cricket workout!";
+    }
+
+    @Override
+    public void setA(int number){
+        this.A=number;
+    }
+    public int getA(){
+        return A;
     }
 }

@@ -20,19 +20,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 public class restController {
 
     private Coach coachObj;
+    private Coach coachObj2;
 
     //this is constructor dependency injection
     // we inject the coach object and use its methods in our rest enpoints
-    // @Autowired
-    // public restController(Coach coachObj){
-    //    this.coachObj = coachObj; 
-    // }
+    @Autowired
+    public restController(@Qualifier("cricketCoach")Coach coachObj, @Qualifier("cricketCoach")Coach coachObj2){
+       this.coachObj = coachObj; 
+       this.coachObj2 = coachObj2;
+    }
 
     //getter setter dependency injection
-    @Autowired
-    public void setCoachObj(@Qualifier("cricketCoach")Coach coachObj){
-        this.coachObj = coachObj;
-    }
+    // @Autowired
+    // public void setCoachObj(@Qualifier("cricketCoach")Coach coachObj){
+    //     this.coachObj = coachObj;
+    // }
     // Without Qualifier if there is only one interface implementation
     // @Autowired
     // public void setCoachObj(Coach coachObj){
@@ -58,6 +60,27 @@ public class restController {
 
     @GetMapping("/getCoachWorkout")
     public String getCoachWorkout(){
+        coachObj.setA(11);
         return coachObj.getCoachWorkout();
+    }
+
+    @GetMapping("/getCoachWorkout2")
+    public String getCoachWorkout2(){
+        coachObj2.setA(22);
+        return coachObj.getCoachWorkout();
+    }
+
+    // even though we are setting different values (11 and 22)in different object of 
+    // cricketCoach class, when we see logs it says
+    // coachObj : 22
+    // coachObj : 22
+    // because by befault Spring boot does singleton object initialization i.e
+    // it shares the object arcross application (so in this case coachObj2 object
+    // and coachObj reference to the same object and got the same value, becasue
+    // of singleton object initialization of class cricketCoach)
+    @GetMapping("/check")
+    public void check(){
+        System.out.println("coachObj : "+coachObj.getA());
+        System.out.println("coachObj2 : "+coachObj2.getA());
     }
 }

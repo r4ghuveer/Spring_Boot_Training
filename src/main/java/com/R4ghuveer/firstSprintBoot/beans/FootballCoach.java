@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Lazy;
 // in required
 @Lazy
 public class FootballCoach implements Coach{
+    private int A = 0;
     public FootballCoach(){
         System.out.println("initialized : "+getClass().getName());
     }
@@ -21,4 +22,11 @@ public class FootballCoach implements Coach{
     public String getCoachWorkout(){
         return "foot ball coaching";
     } 
+    @Override
+    public void setA(int number){
+        this.A=number;
+    }
+    public int getA(){
+        return A;
+    }
 }
