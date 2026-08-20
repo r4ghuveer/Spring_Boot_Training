@@ -4,6 +4,10 @@ import org.springframework.stereotype.Component;
 // the component annotation will expose this class as available to be injected
 @Component
 public class CricketCoach implements Coach {
+
+    public CricketCoach(){
+        System.out.println("initialized : "+getClass().getName());
+    }
     @Override
     public String getCoachWorkout(){
         return "This is cricket workout!";
