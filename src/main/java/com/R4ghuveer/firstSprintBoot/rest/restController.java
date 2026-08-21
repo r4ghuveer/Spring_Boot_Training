@@ -74,13 +74,20 @@ public class restController {
     // cricketCoach class, when we see logs it says
     // coachObj : 22
     // coachObj : 22
+    // and coachObj == coachObj2 ans: true
     // because by befault Spring boot does singleton object initialization i.e
     // it shares the object arcross application (so in this case coachObj2 object
     // and coachObj reference to the same object and got the same value, becasue
     // of singleton object initialization of class cricketCoach)
+    //
+    //
+    // Where as if we explicitly change the bean scope to prototype using the @Scope
+    // annotation different object instance is created for each injection and 
+    // coachObj != coachObj2
     @GetMapping("/check")
-    public void check(){
+    public String check(){
         System.out.println("coachObj : "+coachObj.getA());
         System.out.println("coachObj2 : "+coachObj2.getA());
+        return "coachObj == coachObj2 \nans : "+(coachObj ==coachObj2);
     }
 }
