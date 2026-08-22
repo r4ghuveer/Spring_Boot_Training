@@ -1,8 +1,11 @@
-package com.R4ghuveer.firstSprintBoot.rest;
-import com.R4ghuveer.firstSprintBoot.beans.Coach;
+package com.R4ghuveer.firstSpringBoot.rest;
+import com.R4ghuveer.firstSpringBoot.beans.Coach;
 // import com.R4ghuveer.otherPackage.beans.Coach;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+
+// importing thirdPartyPackage into our controller
+import com.R4ghuveer.thirdPartyPackage.beans.AwsJar;
 
 // auto wired annotation which allows to scan for components that are relavent and
 // inject them
@@ -21,14 +24,15 @@ public class restController {
 
     private Coach coachObj;
     private Coach coachObj2;
+    private AwsJar awsObj;
 
     //this is constructor dependency injection
     // we inject the coach object and use its methods in our rest enpoints
-    @Autowired
-    public restController(@Qualifier("cricketCoach")Coach coachObj, @Qualifier("cricketCoach")Coach coachObj2){
-       this.coachObj = coachObj; 
-       this.coachObj2 = coachObj2;
-    }
+    // @Autowired
+    // public restController(@Qualifier("cricketCoach")Coach coachObj, @Qualifier("cricketCoach")Coach coachObj2){
+    //    this.coachObj = coachObj; 
+    //    this.coachObj2 = coachObj2;
+    // }
 
     //getter setter dependency injection
     // @Autowired
@@ -40,6 +44,17 @@ public class restController {
     // public void setCoachObj(Coach coachObj){
     //     this.coachObj = coachObj;
     // }
+    //
+
+    // the Object awsObj is not a normal component bean, it is a configuration bean
+    // which is manually added in spring container to enable it for injection
+    // using @Configuration and @Bean annotation. check thirdPartyPackage
+    @Autowired
+    public restController(@Qualifier("cricketCoach")Coach coachObj,@Qualifier("cricketCoach")Coach coachObj2, @Qualifier("awsJar")AwsJar awsObj){
+        this.awsObj = awsObj;
+        this.coachObj = coachObj;
+        this.coachObj2 = coachObj2;
+    }
 
     // injecting application properties using value annotation    
     @Value("${test.name}")
@@ -89,5 +104,10 @@ public class restController {
         System.out.println("coachObj : "+coachObj.getA());
         System.out.println("coachObj2 : "+coachObj2.getA());
         return "coachObj == coachObj2 \nans : "+(coachObj ==coachObj2);
+    }
+
+    @GetMapping("/saveDocument")   
+    public String saveDocument(){
+        return awsObj.saveDocument();
     }
 }

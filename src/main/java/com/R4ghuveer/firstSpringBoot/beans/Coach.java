@@ -1,4 +1,4 @@
-package com.R4ghuveer.firstSprintBoot.beans;
+package com.R4ghuveer.firstSpringBoot.beans;
 
 // just an interface(for modular code) nothing special
 public interface Coach {

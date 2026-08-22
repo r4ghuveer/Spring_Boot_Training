@@ -1,4 +1,4 @@
-package com.R4ghuveer.firstSprintBoot;
+package com.R4ghuveer.firstSpringBoot;
 
 // creates Application Context, register all beans, starts embedded server and etc
 import org.springframework.boot.SpringApplication;
@@ -9,13 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //explicitly scanning packages for dependency injection from packages different
 //from the one that have spring boot framework main class
 @SpringBootApplication
-// (
-//     scanBasePackages={"com.R4ghuveer.firstSprintBoot","com.R4ghuveer.otherPackage"}
-//     )
-public class FirstSprintBootApplication {
+(
+    scanBasePackages={"com.R4ghuveer.firstSpringBoot","com.R4ghuveer.thirdPartyPackage"}
+    )
+public class FirstSpringBootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FirstSprintBootApplication.class, args);
+		SpringApplication.run(FirstSpringBootApplication.class, args);
 	}
 
 }

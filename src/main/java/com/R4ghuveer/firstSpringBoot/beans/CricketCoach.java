@@ -1,4 +1,4 @@
-package com.R4ghuveer.firstSprintBoot.beans;
+package com.R4ghuveer.firstSpringBoot.beans;
 import org.springframework.stereotype.Component;
 import org.springframework.context.annotation.Scope;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
